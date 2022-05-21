@@ -4,7 +4,7 @@
 
 void main() {
 
-	// Game mode
+	// Game mode ///////
 	GameManager gm;
 	GameManager2Player gm2;
 

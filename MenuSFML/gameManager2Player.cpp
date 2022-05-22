@@ -14,20 +14,24 @@ int board2[8][8] =
 
 /////////////// GameManager2Player //////////////////////////
 
+// Tang so nuoc co the di
 void GameManager2Player::IncreasePositive(int i, int j) {
     positiveMove[positiveCount] = Vector2f(i * Size, j * Size) + offset2;
     positiveCount++;
 }
 
+
+// Di chuyen quan co
 void GameManager2Player::move(int n, Vector2f oldPos, Vector2f newPos)
 {
     posS.push(oldPos);
     posS.push(newPos);
     nS.push(n);
-    int y = int((newPos - offset2).y / 56);//kiem tra xem co phong hau hay khong
+    int y = int((newPos - offset2).y / 56);     //kiem tra xem co phong hau hay khong
+
     //phong hau cho tot
     if (y == 0 && f[n].index == 6) {
-        nS.push(100);//de ty undo xoa phong hau di
+        nS.push(100);   //de ty undo xoa phong hau di
         f[n].index = 4;
         f[n].cost = 90;
         f[n].s.setTextureRect(IntRect(3 * Size, Size, Size, Size));
@@ -38,25 +42,28 @@ void GameManager2Player::move(int n, Vector2f oldPos, Vector2f newPos)
         f[n].cost = -90;
         f[n].s.setTextureRect(IntRect(3 * Size, 0, Size, Size));
     }
+
     //di chuyen em an vao vi tri moi 
     for (int i = 0; i < 32; i++) {
         if (f[i].s.getPosition() == newPos) {
-            f[i].s.setPosition(-100, -100);//di chuyen em bi an ra khoi man hinh
+            f[i].s.setPosition(-100, -100);     //di chuyen em bi an ra khoi man hinh
             posS.push(newPos);
             posS.push(Vector2f(-100, -100));
             nS.push(i);
             nBiS.push(f[i].index);
-            break;//neu ta dat f[n].s.setPosition(newPos) len truoc ma ko co break=> bi mat not con nay
+            break;      //neu ta dat f[n].s.setPosition(newPos) len truoc ma ko co break=> bi mat not con nay
         }
     }
     f[n].s.setPosition(newPos);
 }
 
+
+// Undo (Press Space to Undo)
 void GameManager2Player::Undo()
 {
     int n = nS.top();
     nS.pop();
-    Vector2f p = posS.top();//kiem tra xem co = (-100,-100) => day la con bi an
+    Vector2f p = posS.top();    //kiem tra xem co = (-100,-100) => day la con bi an
     posS.pop();
     Vector2f q = posS.top();
     posS.pop();
@@ -76,12 +83,13 @@ void GameManager2Player::Undo()
     }
     f[n].s.setPosition(q);
 
-    if (p == Vector2f(-100, -100))  Undo();// luc nay moi dy chuyen con an
+    if (p == Vector2f(-100, -100))  Undo(); // luc nay moi dy chuyen con an
 }
 
-void GameManager2Player::Create()//gan gia tri can thiet vao danh sach Quan co
+// Khoi tao gia tri cho quan co
+void GameManager2Player::Create()   //gan gia tri can thiet vao danh sach Quan co
 {
-    positiveCount = 0;//so nuoc co the di ban dau duong nhien =0(chua chon gi ca)
+    positiveCount = 0;  //so nuoc co the di ban dau duong nhien =0(chua chon gi ca)
     int k = 0;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++)
@@ -212,6 +220,7 @@ void GameManager2Player::PositiveRook(int n, int x, int y, int grid[9][9])//tu v
     }
 }
 
+// Cac nuoc co the di cua quan co
 void GameManager2Player::PositiveMoving(int n)
 {
     Vector2f pos = f[n].s.getPosition() - offset2;
@@ -241,6 +250,7 @@ void GameManager2Player::PositiveMoving(int n)
     else   PositivePawn(n, x, y, grid); //tot
 }
 
+// Game 2 player loop
 void GameManager2Player::Play(RenderWindow& window)
 {
     Texture t1, t2, t3;
@@ -254,10 +264,10 @@ void GameManager2Player::Play(RenderWindow& window)
 
     Create();//khoi tao
 
-    bool turn = true;// turn : = true => nguoi ... false => may
-    Vector2f oldPos, newPos;// luu vi tri click lan1 va lan2
+    bool turn = true;// turn : = true => white ... false => yellow
+    Vector2f oldPos, newPos;    // luu vi tri click lan1 va lan2
     int n = 0, click = 0, count = 0, checkEndGame = 0;
-    Vector2i pos;//vitri chuot khi click
+    Vector2i pos;   //vitri chuot khi click
     while (window.isOpen())
     {
         Event e;
@@ -294,6 +304,7 @@ void GameManager2Player::Play(RenderWindow& window)
                 }
             }
             ////////////////////////////////////////
+            // CLick chon quan co
             if (click == 1) {
                 bool isMove = false;
                 for (int i = 16; i < 32; i++)
@@ -313,6 +324,9 @@ void GameManager2Player::Play(RenderWindow& window)
                     positiveCount = 0;
                 }
             }
+            ///////////////////////////////
+
+            // Click chon nuoc di
             if (click == 2)
             {
                 f[n].s.setColor(Color::White);

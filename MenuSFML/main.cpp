@@ -4,7 +4,7 @@
 
 void main() {
 
-	// Game mode ///////
+	////// Game mode ///////
 	GameManager gm;
 	GameManager2Player gm2;
 
@@ -33,6 +33,7 @@ void main() {
 		Event event;
 		while (MENU.pollEvent(event))
 		{
+			// Press X to close menu
 			if (event.type == Event::Closed)
 			{
 				MENU.close();
@@ -50,6 +51,7 @@ void main() {
 					break;
 				}
 
+				// Press Enter to open
 				if (event.key.code == Keyboard::Return) {
 					RenderWindow playVsAI(VideoMode(504, 504), "Play vs AI");
 					RenderWindow playVsPlay(VideoMode(504, 504), "Play vs Play");

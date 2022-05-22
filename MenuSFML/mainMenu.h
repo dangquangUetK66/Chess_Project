@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-#define max_main_menu 4
+#define max_main_menu 4			// 4 things in the main menu
 
 class mainMenu
 {

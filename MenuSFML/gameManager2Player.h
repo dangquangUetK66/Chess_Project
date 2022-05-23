@@ -27,7 +27,7 @@ public:
     int positiveCount;// so nuoc co the di chuyen
     stack<Vector2f> posS;//luu tru vi tri cac nuoc di
     stack<int> nS;//luu tru index cua quan di
-    stack<int> nBiS; // luu tru index cua quan bi an
+    vector <int> nBiS; // luu tru index cua quan bi an
 
     void move(int n, Vector2f oldPos, Vector2f newPos);//ham danh co
     void Undo();//ham quay lai

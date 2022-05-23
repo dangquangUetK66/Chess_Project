@@ -50,7 +50,7 @@ void GameManager2Player::move(int n, Vector2f oldPos, Vector2f newPos)
             posS.push(newPos);
             posS.push(Vector2f(-100, -100));
             nS.push(i);
-            nBiS.push(f[i].index);
+            nBiS.push_back(f[i].index);
             break;      //neu ta dat f[n].s.setPosition(newPos) len truoc ma ko co break=> bi mat not con nay
         }
     }
@@ -294,14 +294,10 @@ void GameManager2Player::Play(RenderWindow& window)
         {
 			// Check if end game //////////////////////////
             if (nBiS.size() != 0) {
-                if (nBiS.top() == 5 || nBiS.top() == -5) {
+                if (nBiS[nBiS.size() - 1] == 5 || nBiS[nBiS.size() - 1] == -5) {
                     window.close();
-
                 }
-
-                for (int i = 0; i < nBiS.size() - 1; i++) {
-                    nBiS.pop();
-                }
+                nBiS.clear();
             }
             ////////////////////////////////////////
             // CLick chon quan co
@@ -350,13 +346,10 @@ void GameManager2Player::Play(RenderWindow& window)
         {
             // Check if end game //////////////////////////
             if (nBiS.size() != 0) {
-                if (nBiS.top() == 5 || nBiS.top() == -5) {
+                if (nBiS[nBiS.size() - 1] == 5 || nBiS[nBiS.size() - 1] == -5) {
                     window.close();
                 }
-
-                for (int i = 0; i < nBiS.size() - 1; i++) {
-                    nBiS.pop();
-                }
+                nBiS.clear();
             }
             ///////////////////////////////////////////////////
             if (click == 1) {

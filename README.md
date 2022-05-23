@@ -31,6 +31,7 @@ A simple project game using SFML Library and C++ Programming
   - Mảng, duyệt mảng bàn cờ vua
   - Vector để kiểm tra điều kiện kết thúc game
   - Stack để phục vụ việc Undo quân cờ
+  - Thuật toán tỉa cây để phục vụ cho AI (CÓ THAM KHẢO TRÊN MẠNG)
 
 ## 5. Kết luận, hướng phát triển và điều tâm đắc
 

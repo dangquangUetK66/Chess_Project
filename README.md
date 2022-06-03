@@ -14,19 +14,34 @@ A simple project game using SFML Library and C++ Programming
 
 ## 2. Mô tả chung về trò chơi
 - Game dựa trên ý tưởng về trò chơi cờ vua truyền thống, có điều chỉnh để phù hợp với cách chơi cờ vua dân dã
-- Luật chơi vẫn theo luật cờ vua hiện hành, có một số hạn chế như chưa có chức năng nhập thành, chiếu bí, chiến thuật của AI còn hạn chế
+- Game có 2 chế độ: chế độ chơi người với người (Player vs Player) và chế độ chơi người với máy (Player vs Computer)
+- Một Menu hiển thị các mục của trò chơi, trong đó có mục hiển thị Rule & About (Luật chơi) với mặc định quân cờ trắng đi trước
+- Trò chơi sẽ kết thúc khi quân tướng của một trong hai bên bị ăn mất
+- Luật chơi vẫn theo luật cờ vua hiện hành, có một số hạn chế như chưa có chức năng nhập thành, chiếu bí, chiến thuật của AI còn hạn chế.
 
 ## 3. Các chức năng đã cài đặt
+
+### Giao diện người dùng:
+- Màn hình Menu:
+  - Nút Player vs Computer: chế độ chơi người với máy
+  - Nút Player vs Player: chế độ chơi người với người
+  - Nút Rule & About: hiển thị luật chơi, các phần liên quan đến trò chơi
+  - Nút Exit: thoát khỏi trò chơi
+
+- Màn hình khi chơi game: thoát màn hình bằng nút X bên góc phải, khi đó sẽ trở về Menu
+
+### Xử lý nước đi của trò chơi
 - Hiển thị cho người chơi những nước đi hợp lệ trong game
 - Có chức năng phong hậu cho tốt khi chạm ô dưới cùng
 - Có chức năng Undo khi bấm Space
 - Game lập tức kết thúc khi tướng của 1 trong 2 bên bị ăn mất
-- Menu hiển thị các chức năng, hiển thị luật chơi
+
 - Link video preview: https://www.youtube.com/watch?v=3ZjT9FJL2EU
 
 ## 4. Các kĩ thuật được sử dụng trong game
 - Thư viện đồ họa SFML: https://www.sfml-dev.org/tutorials/2.5/
 - Kĩ thuật lập trình được sử dụng:
+  - Sử dụng các hàm tham chiếu, tham trị, hằng tham chiếu
   - Struct để quản lí quân cờ, class để quản lí chế độ chơi 1 hay 2 player
   - Mảng, duyệt mảng bàn cờ vua
   - Vector để kiểm tra điều kiện kết thúc game
